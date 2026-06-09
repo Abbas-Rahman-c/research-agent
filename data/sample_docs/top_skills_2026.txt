@@ -1,0 +1,33 @@
+Most In-Demand Technical Skills for Engineers 2026
+
+AI/ML Skills (Highest Priority):
+- Python: Mandatory for all AI roles
+- PyTorch or TensorFlow: Required for ML engineering
+- LangChain/LlamaIndex: Required for agent/RAG development
+- HuggingFace Transformers: Essential for NLP roles
+- Vector databases (FAISS, Pinecone, Weaviate): Growing demand
+- FastAPI: Standard for ML model serving
+- Docker/Kubernetes: Required for MLOps roles
+
+Cloud Skills:
+- AWS SageMaker: Most widely used ML platform
+- Azure AI/Foundry: Growing enterprise demand
+- Google Vertex AI: Strong in research companies
+
+Soft Skills That Matter:
+- Technical writing and documentation
+- Research paper reading and implementation
+- System design for ML pipelines
+- Cross-functional communication
+
+Certifications Worth Getting:
+- AWS Certified ML Specialty
+- Google Professional ML Engineer
+- Microsoft Azure AI Engineer Associate
+- DeepLearning.AI specializations (free/cheap)
+
+Learning Resources:
+- fast.ai: Best practical deep learning course
+- Andrej Karpathy YouTube: Best for fundamentals
+- Papers With Code: Stay current with research
+- Hugging Face courses: Best for NLP/LLM skills

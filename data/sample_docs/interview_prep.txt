@@ -1,0 +1,35 @@
+Engineering Interview Preparation Guide 2026
+
+Interview Types for AI/ML Roles:
+1. Technical screen (45 min coding)
+2. ML system design (1 hour)
+3. Research discussion (for research roles)
+4. Behavioral/culture fit
+5. Take-home project (common at startups)
+
+Most Common ML Interview Topics:
+- Explain the bias-variance tradeoff
+- How does backpropagation work
+- Difference between L1 and L2 regularization
+- How would you handle imbalanced datasets
+- Explain attention mechanism in transformers
+- Design a recommendation system
+- How do you evaluate an LLM
+
+Coding Interview Topics:
+- Arrays, strings, hash maps (most common)
+- Dynamic programming (medium frequency)
+- Trees and graphs (medium frequency)
+- System design for ML pipelines
+
+Behavioral Questions to Prepare:
+- Tell me about a project you're most proud of
+- How do you stay current with AI research
+- Describe a time you debugged a difficult model issue
+- Why do you want to work in AI
+
+Interview Resources:
+- LeetCode: 75 curated problems (Blind 75)
+- ML Interview guide: mlinterviewprep.com
+- System design: Designing Data Intensive Applications book
+- Mock interviews: Pramp.com (free peer interviews)

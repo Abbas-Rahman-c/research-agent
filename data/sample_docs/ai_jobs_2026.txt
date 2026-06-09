@@ -1,0 +1,25 @@
+AI Engineering Jobs Market 2026
+
+The demand for AI engineers has grown 340% since 2023. Companies are actively 
+hiring for roles including ML Engineer, AI Research Scientist, LLM Engineer, 
+and AI Product Manager.
+
+Top hiring companies in 2026:
+- Google DeepMind: Hiring 2000+ AI engineers globally
+- Microsoft: Expanding Azure AI teams heavily
+- Meta AI: Focus on open source LLM development
+- Anthropic: Hiring safety-focused ML researchers
+- Startups: Over 4000 AI startups hiring entry-level engineers
+
+Entry level AI engineer salaries:
+- United States: $120,000 - $160,000 base
+- United Kingdom: £65,000 - £90,000
+- UAE/Dubai: $80,000 - $110,000
+- Remote roles: $60,000 - $100,000
+
+Most in-demand specializations:
+1. LLM fine-tuning and deployment
+2. RAG pipeline development
+3. AI agent development
+4. Computer vision engineering
+5. MLOps and model deployment

@@ -1,0 +1,23 @@
+Engineering Salaries and Compensation 2026
+
+Software Engineering Salaries by Level:
+- Junior (0-2 years): $70,000 - $110,000 USD
+- Mid-level (2-5 years): $110,000 - $160,000 USD
+- Senior (5+ years): $160,000 - $250,000 USD
+- Staff/Principal: $250,000 - $400,000 USD
+
+AI/ML Engineering Premium:
+AI engineers earn 25-40% more than general software engineers at same level.
+Reason: High demand, specialized skills, limited talent pool.
+
+Pakistan Engineering Market:
+- Local market: PKR 150,000 - 400,000/month for AI roles
+- Remote international: $2,000 - $8,000/month
+- Freelance AI projects: $50 - $150/hour on Upwork/Toptal
+
+Top paying skills in 2026:
+1. LLM deployment: +35% salary premium
+2. PyTorch/JAX: +28% premium  
+3. MLOps/Kubernetes: +25% premium
+4. RAG systems: +30% premium
+5. AI agents: +40% premium
