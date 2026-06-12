@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Research Agent — Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 260px;
+    min-width: 260px;
+    background: #161b22;
+    border-right: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .sidebar-header {
+    padding: 20px 16px;
+    border-bottom: 1px solid #30363d;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #58a6ff, #388bfd);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .logo h1 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e6edf3;
+    line-height: 1.3;
+  }
+
+  .new-chat-btn {
+    width: 100%;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #e6edf3;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .new-chat-btn:hover { background: #30363d; }
+
+  .sidebar-section {
+    padding: 12px 16px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #484f58;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .history-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 8px;
+  }
+
+  .history-item {
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #8b949e;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+  }
+
+  .history-item:hover { background: #21262d; color: #e6edf3; }
+  .history-item.active { background: #21262d; color: #e6edf3; }
+
+  .sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid #30363d;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #58a6ff, #388bfd);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .user-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #e6edf3;
+  }
+
+  .user-role {
+    font-size: 11px;
+    color: #8b949e;
+  }
+
+  .logout-btn {
+    width: 100%;
+    background: none;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px;
+    color: #8b949e;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .logout-btn:hover {
+    background: rgba(248, 81, 73, 0.1);
+    border-color: rgba(248, 81, 73, 0.3);
+    color: #f85149;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .topbar {
+    padding: 16px 24px;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #161b22;
+  }
+
+  .topbar h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e6edf3;
+  }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(88, 166, 255, 0.1);
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    color: #58a6ff;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .badge.green {
+    background: rgba(46, 160, 67, 0.1);
+    border-color: rgba(46, 160, 67, 0.2);
+    color: #3fb950;
+  }
+
+  /* CHAT AREA */
+  .chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .welcome {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .welcome-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .welcome h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #e6edf3;
+  }
+
+  .welcome p {
+    font-size: 15px;
+    color: #8b949e;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .quick-btn {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    color: #e6edf3;
+  }
+
+  .quick-btn:hover {
+    background: #21262d;
+    border-color: #58a6ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 166, 255, 0.1);
+  }
+
+  .quick-btn .icon { font-size: 20px; margin-bottom: 6px; }
+  .quick-btn .title { font-size: 13px; font-weight: 500; color: #e6edf3; }
+  .quick-btn .desc { font-size: 11px; color: #8b949e; margin-top: 2px; }
+
+  /* MESSAGES */
+  .message {
+    animation: fadeIn 0.3s ease-out;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .message.user {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .message.user .bubble {
+    background: #1f6feb;
+    border-radius: 16px 16px 4px 16px;
+    padding: 12px 16px;
+    max-width: 70%;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .message.agent .agent-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* REASONING STEPS */
+  .steps-container {
+    padding: 16px 20px;
+    border-bottom: 1px solid #30363d;
+    background: #0d1117;
+  }
+
+  .steps-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #58a6ff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: stepIn 0.4s ease-out forwards;
+  }
+
+  .step:nth-child(2) { animation-delay: 0.1s; }
+  .step:nth-child(3) { animation-delay: 0.3s; }
+  .step:nth-child(4) { animation-delay: 0.5s; }
+
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .step-num {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border-radius: 50%;
+    background: rgba(88, 166, 255, 0.15);
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    color: #58a6ff;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: #8b949e;
+    line-height: 1.5;
+  }
+
+  /* ANSWER */
+  .answer-container {
+    padding: 20px;
+  }
+
+  .answer-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #3fb950;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .answer-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #c9d1d9;
+    white-space: pre-wrap;
+  }
+
+  /* SOURCES */
+  .sources-container {
+    padding: 12px 20px 16px;
+    border-top: 1px solid #30363d;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .sources-label {
+    font-size: 11px;
+    color: #484f58;
+    margin-right: 4px;
+  }
+
+  .source-tag {
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #8b949e;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .source-tag.web {
+    border-color: rgba(88, 166, 255, 0.2);
+    color: #58a6ff;
+    background: rgba(88, 166, 255, 0.05);
+  }
+
+  /* THINKING */
+  .thinking {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .thinking-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .thinking-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .thinking-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #8b949e;
+  }
+
+  .thinking-step.active { color: #58a6ff; }
+  .thinking-step.done { color: #3fb950; }
+
+  .thinking-step .dot {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    border-radius: 50%;
+    background: #30363d;
+  }
+
+  .thinking-step.active .dot {
+    background: #58a6ff;
+    animation: blink 1s ease-in-out infinite;
+  }
+
+  .thinking-step.done .dot { background: #3fb950; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .progress-bar {
+    height: 2px;
+    background: #21262d;
+    border-radius: 2px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #58a6ff, #3fb950);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  /* INPUT AREA */
+  .input-area {
+    padding: 16px 24px 20px;
+    border-top: 1px solid #30363d;
+    background: #161b22;
+  }
+
+  .input-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  textarea {
+    flex: 1;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #e6edf3;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    max-height: 120px;
+    min-height: 48px;
+    line-height: 1.5;
+  }
+
+  textarea:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+  }
+
+  textarea::placeholder { color: #484f58; }
+
+  .send-btn {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #238636, #2ea043);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    text-align: center;
+    font-size: 11px;
+    color: #484f58;
+    margin-top: 8px;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <div class="logo-icon">🤖</div>
+      <h1>Career Research<br>Agent</h1>
+    </div>
+    <button class="new-chat-btn" onclick="newChat()">
+      ✏️ New research session
+    </button>
+  </div>
+
+  <div class="sidebar-section">Recent searches</div>
+  <div class="history-list" id="historyList">
+    <div style="padding: 8px 10px; font-size: 12px; color: #484f58;">
+      Your searches will appear here
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="avatar">{{ username[0].upper() }}</div>
+      <div>
+        <div class="user-name">{{ username }}</div>
+        <div class="user-role">Researcher</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="window.location='/logout'">
+      Sign out
+    </button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <h2>Research Dashboard</h2>
+    <div class="badges">
+      <span class="badge">🧠 Reasoning Agent</span>
+      <span class="badge green">● Live</span>
+    </div>
+  </div>
+
+  <div class="chat-area" id="chatArea">
+    <div class="welcome" id="welcome">
+      <div class="welcome-icon">🤖</div>
+      <h2>What do you want to research?</h2>
+      <p>Ask anything about AI engineering careers, salaries, skills, interview prep, or the job market. I'll search both my knowledge base and the web.</p>
+      <div class="quick-actions">
+        <div class="quick-btn" onclick="askQuestion('What is the salary of an AI engineer in 2026?')">
+          <div class="icon">💰</div>
+          <div class="title">AI Engineer Salaries</div>
+          <div class="desc">Global salary ranges by level</div>
+        </div>
+        <div class="quick-btn" onclick="askQuestion('What skills should I learn for a high paying AI job?')">
+          <div class="icon">🛠️</div>
+          <div class="title">Skills to Learn</div>
+          <div class="desc">Most in-demand technical skills</div>
+        </div>
+        <div class="quick-btn" onclick="askQuestion('How do I write a strong AI engineering resume?')">
+          <div class="icon">📄</div>
+          <div class="title">Resume Tips</div>
+          <div class="desc">Stand out to recruiters</div>
+        </div>
+        <div class="quick-btn" onclick="askQuestion('How do I prepare for an ML engineering interview?')">
+          <div class="icon">🎯</div>
+          <div class="title">Interview Prep</div>
+          <div class="desc">ML and system design questions</div>
+        </div>
+        <div class="quick-btn" onclick="askQuestion('How can I get a remote AI engineering job from Pakistan?')">
+          <div class="icon">🌍</div>
+          <div class="title">Remote Work</div>
+          <div class="desc">Landing international roles</div>
+        </div>
+        <div class="quick-btn" onclick="askQuestion('How do I start freelancing as an AI engineer on Upwork?')">
+          <div class="icon">💻</div>
+          <div class="title">Freelancing</div>
+          <div class="desc">Build income while studying</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <div class="input-container">
+      <textarea
+        id="questionInput"
+        placeholder="Ask about AI careers, salaries, skills, interview prep..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendQuestion()">↑</button>
+    </div>
+    <div class="input-hint">
+      Searches Foundry IQ knowledge base + live web · Press Enter to send
+    </div>
+  </div>
+</div>
+
+<script>
+  let isLoading = false;
+  let history = [];
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendQuestion();
+    }
+  }
+
+  function newChat() {
+    document.getElementById('chatArea').innerHTML = `
+      <div class="welcome" id="welcome">
+        <div class="welcome-icon">🤖</div>
+        <h2>What do you want to research?</h2>
+        <p>Ask anything about AI engineering careers, salaries, skills, interview prep, or the job market.</p>
+        <div class="quick-actions">
+          <div class="quick-btn" onclick="askQuestion('What is the salary of an AI engineer in 2026?')">
+            <div class="icon">💰</div><div class="title">AI Engineer Salaries</div>
+            <div class="desc">Global salary ranges by level</div>
+          </div>
+          <div class="quick-btn" onclick="askQuestion('What skills should I learn for a high paying AI job?')">
+            <div class="icon">🛠️</div><div class="title">Skills to Learn</div>
+            <div class="desc">Most in-demand technical skills</div>
+          </div>
+          <div class="quick-btn" onclick="askQuestion('How do I write a strong AI engineering resume?')">
+            <div class="icon">📄</div><div class="title">Resume Tips</div>
+            <div class="desc">Stand out to recruiters</div>
+          </div>
+          <div class="quick-btn" onclick="askQuestion('How do I prepare for an ML engineering interview?')">
+            <div class="icon">🎯</div><div class="title">Interview Prep</div>
+            <div class="desc">ML and system design questions</div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function askQuestion(q) {
+    document.getElementById('questionInput').value = q;
+    sendQuestion();
+  }
+
+  function addToHistory(question) {
+    history.unshift(question);
+    const list = document.getElementById('historyList');
+    list.innerHTML = history.slice(0, 10).map((q, i) => `
+      <div class="history-item ${i === 0 ? 'active' : ''}"
+           onclick="askQuestion('${q.replace(/'/g, "\\'")}')">
+        🔍 ${q.length > 35 ? q.substring(0, 35) + '...' : q}
+      </div>
+    `).join('');
+  }
+
+  async function sendQuestion() {
+    const input = document.getElementById('questionInput');
+    const question = input.value.trim();
+    if (!question || isLoading) return;
+
+    isLoading = true;
+    document.getElementById('sendBtn').disabled = true;
+    input.value = '';
+    input.style.height = 'auto';
+
+    const welcome = document.getElementById('welcome');
+    if (welcome) welcome.remove();
+
+    const chatArea = document.getElementById('chatArea');
+
+    // Add user message
+    chatArea.innerHTML += `
+      <div class="message user">
+        <div class="bubble">${escapeHtml(question)}</div>
+      </div>`;
+
+    // Add thinking indicator
+    const thinkingId = 'thinking-' + Date.now();
+    chatArea.innerHTML += `
+      <div class="thinking" id="${thinkingId}">
+        <div class="thinking-card">
+          <div class="thinking-steps">
+            <div class="thinking-step active" id="step1-${thinkingId}">
+              <div class="dot"></div>
+              <span>Decomposing question into sub-questions...</span>
+            </div>
+            <div class="thinking-step" id="step2-${thinkingId}">
+              <div class="dot"></div>
+              <span>Searching Foundry IQ knowledge base...</span>
+            </div>
+            <div class="thinking-step" id="step3-${thinkingId}">
+              <div class="dot"></div>
+              <span>Searching the web for current information...</span>
+            </div>
+            <div class="thinking-step" id="step4-${thinkingId}">
+              <div class="dot"></div>
+              <span>Synthesizing cited answer...</span>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-${thinkingId}" style="width: 10%"></div>
+          </div>
+        </div>
+      </div>`;
+
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+    // Animate steps
+    setTimeout(() => {
+      setStepDone(thinkingId, 1, 2);
+      setProgress(thinkingId, 30);
+    }, 800);
+
+    setTimeout(() => {
+      setStepDone(thinkingId, 2, 3);
+      setProgress(thinkingId, 55);
+    }, 1800);
+
+    setTimeout(() => {
+      setStepDone(thinkingId, 3, 4);
+      setProgress(thinkingId, 80);
+    }, 2800);
+
+    try {
+      const response = await fetch('/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+
+      const data = await response.json();
+      setProgress(thinkingId, 100);
+
+      setTimeout(() => {
+        document.getElementById(thinkingId)?.remove();
+
+        const foundrySources = data.sources.filter(s => s.endsWith('.txt'));
+        const webSources = data.sources.filter(s => !s.endsWith('.txt'));
+
+        chatArea.innerHTML += `
+          <div class="message agent">
+            <div class="agent-card">
+              <div class="steps-container">
+                <div class="steps-title">🧠 Reasoning steps</div>
+                ${data.sub_questions.map((sq, i) => `
+                  <div class="step">
+                    <div class="step-num">${i + 1}</div>
+                    <div class="step-text">${escapeHtml(sq)}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="answer-container">
+                <div class="answer-label">✅ Answer</div>
+                <div class="answer-text">${escapeHtml(data.answer)}</div>
+              </div>
+              <div class="sources-container">
+                <span class="sources-label">Sources:</span>
+                ${foundrySources.map(s => `
+                  <span class="source-tag">📄 ${s}</span>
+                `).join('')}
+                ${webSources.map(s => `
+                  <span class="source-tag web">🌐 ${s.substring(0, 40)}${s.length > 40 ? '...' : ''}</span>
+                `).join('')}
+              </div>
+            </div>
+          </div>`;
+
+        chatArea.scrollTop = chatArea.scrollHeight;
+        addToHistory(question);
+      }, 400);
+
+    } catch (err) {
+      document.getElementById(thinkingId)?.remove();
+      chatArea.innerHTML += `
+        <div class="message agent">
+          <div class="agent-card">
+            <div class="answer-container">
+              <div class="answer-label" style="color: #f85149;">⚠️ Error</div>
+              <div class="answer-text" style="color: #f85149;">
+                Something went wrong. Make sure the backend is running on port 8000.
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    isLoading = false;
+    document.getElementById('sendBtn').disabled = false;
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  function setStepDone(id, doneNum, activeNum) {
+    const done = document.getElementById(`step${doneNum}-${id}`);
+    const active = document.getElementById(`step${activeNum}-${id}`);
+    if (done) { done.classList.remove('active'); done.classList.add('done'); }
+    if (active) active.classList.add('active');
+  }
+
+  function setProgress(id, pct) {
+    const bar = document.getElementById(`progress-${id}`);
+    if (bar) bar.style.width = pct + '%';
+  }
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+</script>
+</body>
+</html>

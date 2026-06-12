@@ -1,0 +1,37 @@
+Freelancing Guide for AI Engineers 2026
+
+Top freelancing platforms for AI engineers:
+- Upwork: Largest platform, best for beginners
+- Toptal: Top 3% only, highest rates ($60-$200/hr)
+- Fiverr: Good for packaged AI services
+- Freelancer.com: Large volume, lower rates
+- Gun.io: US-focused, vetted developers
+- Contra: No commission platform, growing
+
+Realistic earnings timeline:
+- Month 1-3: Building profile, $0-$500/month
+- Month 4-6: First consistent clients, $500-$2,000/month
+- Month 7-12: Established reputation, $2,000-$5,000/month
+- Year 2+: Expert freelancer, $5,000-$15,000/month
+
+Most profitable AI freelance services:
+1. Custom chatbot development: $500-$5,000 per project
+2. RAG pipeline setup: $1,000-$8,000 per project
+3. Fine-tuning LLMs: $2,000-$15,000 per project
+4. AI integration into existing apps: $1,500-$10,000
+5. Data pipeline automation: $800-$5,000 per project
+6. Computer vision solutions: $1,000-$8,000 per project
+
+How to write winning proposals:
+- Lead with the client's problem, not your skills
+- Show relevant work within first 3 sentences
+- Give a specific timeline and deliverables
+- Ask one clarifying question to show engagement
+- Keep it under 200 words
+
+Building your Upwork profile:
+- Professional photo (not a selfie)
+- Headline: "AI/ML Engineer | RAG Pipelines | LLM Apps"
+- Overview: Focus on client outcomes not tech stack
+- Portfolio: 3-5 strong projects with results
+- Certifications: AWS, Google, Microsoft add credibility

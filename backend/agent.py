@@ -1,10 +1,12 @@
 import time
 from groq import Groq
-from backend.config import GROQ_API_KEY, MODEL_NAME
+from tavily import TavilyClient
+from backend.config import GROQ_API_KEY, MODEL_NAME, TAVILY_API_KEY
 from backend.foundry_client import search_knowledge, format_context
 from backend.prompts import DECOMPOSE_PROMPT, SYNTHESIZE_PROMPT
 
 client = Groq(api_key=GROQ_API_KEY)
+tavily = TavilyClient(api_key=TAVILY_API_KEY)
 
 
 def llm_call(prompt: str, retries: int = 3) -> str:
@@ -39,7 +41,6 @@ def decompose_question(question: str) -> list[str]:
                     sub_questions.append(cleaned)
 
         if not sub_questions:
-            print("Decomposition parsing failed, using original question")
             return [question]
 
         return sub_questions[:3]
@@ -49,28 +50,79 @@ def decompose_question(question: str) -> list[str]:
         return [question]
 
 
-def retrieve_for_subquestions(sub_questions: list[str]) -> list[dict]:
+def search_foundry(sub_questions: list[str]) -> list[dict]:
+    """Search Azure AI Search (Foundry IQ) knowledge base."""
     all_results = []
     seen_sources = set()
 
     for sq in sub_questions:
         try:
-            print(f"  Searching: {sq}")
+            print(f"  [Foundry IQ] Searching: {sq}")
             results = search_knowledge(sq, top_k=2)
             for r in results:
                 if r["source"] not in seen_sources:
-                    all_results.append(r)
+                    all_results.append({
+                        "content": r["content"],
+                        "source": r["source"],
+                        "type": "foundry"
+                    })
                     seen_sources.add(r["source"])
         except Exception as e:
-            print(f"  Search failed for sub-question: {e}")
-            continue
+            print(f"  Foundry search failed: {e}")
 
     return all_results
 
 
-def synthesize_answer(question: str, results: list[dict]) -> str:
+def search_web(sub_questions: list[str]) -> list[dict]:
+    """Search the web using Tavily for real-time information."""
+    all_results = []
+    seen_urls = set()
+
+    for sq in sub_questions:
+        try:
+            print(f"  [Tavily Web] Searching: {sq}")
+            response = tavily.search(
+                query=sq,
+                search_depth="basic",
+                max_results=2,
+                include_answer=False
+            )
+            for r in response.get("results", []):
+                url = r.get("url", "")
+                if url not in seen_urls:
+                    all_results.append({
+                        "content": r.get("content", ""),
+                        "source": r.get("title", url),
+                        "url": url,
+                        "type": "web"
+                    })
+                    seen_urls.add(url)
+        except Exception as e:
+            print(f"  Web search failed: {e}")
+
+    return all_results
+
+
+def format_combined_context(foundry_results: list[dict], web_results: list[dict]) -> str:
+    """Format both Foundry IQ and web results into context for the LLM."""
+    parts = []
+
+    if foundry_results:
+        parts.append("=== Knowledge Base (Foundry IQ) ===")
+        for i, r in enumerate(foundry_results, 1):
+            parts.append(f"[KB Source {i}: {r['source']}]\n{r['content']}")
+
+    if web_results:
+        parts.append("\n=== Web Search Results ===")
+        for i, r in enumerate(web_results, 1):
+            parts.append(f"[Web Source {i}: {r['source']}]\n{r['content']}")
+
+    return "\n\n".join(parts) if parts else "No relevant information found."
+
+
+def synthesize_answer(question: str, foundry_results: list[dict], web_results: list[dict]) -> str:
     try:
-        context = format_context(results)
+        context = format_combined_context(foundry_results, web_results)
         prompt = SYNTHESIZE_PROMPT.format(question=question, context=context)
         return llm_call(prompt)
     except Exception as e:
@@ -98,24 +150,31 @@ def run_agent(question: str) -> dict:
     for i, sq in enumerate(sub_questions, 1):
         print(f"  {i}. {sq}")
 
-    print("\nStep 2: Retrieving from Foundry IQ...")
-    results = retrieve_for_subquestions(sub_questions)
-    print(f"  Found {len(results)} unique sources")
+    print("\nStep 2: Retrieving from Foundry IQ + Web...")
+    foundry_results = search_foundry(sub_questions)
+    web_results = search_web(sub_questions)
+    print(f"  Foundry IQ: {len(foundry_results)} sources")
+    print(f"  Web: {len(web_results)} sources")
 
-    if not results:
+    all_sources = (
+        [r["source"] for r in foundry_results] +
+        [r["source"] for r in web_results]
+    )
+
+    if not foundry_results and not web_results:
         return {
             "question": question,
             "sub_questions": sub_questions,
             "sources": [],
-            "answer": "I couldn't find relevant information for this question. Try asking about AI engineering careers, salaries, skills, or interview preparation."
+            "answer": "I couldn't find relevant information for this question."
         }
 
     print("\nStep 3: Synthesizing answer...")
-    answer = synthesize_answer(question, results)
+    answer = synthesize_answer(question, foundry_results, web_results)
 
     return {
         "question": question,
         "sub_questions": sub_questions,
-        "sources": [r["source"] for r in results],
+        "sources": all_sources,
         "answer": answer
     }

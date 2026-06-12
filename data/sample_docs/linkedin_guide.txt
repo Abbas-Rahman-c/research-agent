@@ -1,0 +1,49 @@
+LinkedIn Optimization Guide for Engineers 2026
+
+Profile sections that matter most:
+
+1. Headline (most important):
+Bad: "Computer Science Student at NUST"
+Good: "AI/ML Engineer | LLM Apps | RAG Pipelines | FastAPI"
+Best: "Building AI Agents | LangChain + Azure | Open to Remote Roles"
+
+2. About section:
+- First line must hook: state what you do and for whom
+- Mention 2-3 specific technologies
+- Include what you're looking for
+- End with a call to action
+- Keep under 300 words
+
+3. Experience section:
+- Use numbers wherever possible
+- "Built X that achieved Y" not "Responsible for X"
+- Include tech stack in each role
+- Add project links
+
+4. Featured section:
+- Pin your best GitHub project
+- Pin a demo video if you have one
+- Pin a technical article if you've written one
+
+5. Skills section:
+- Add Python, PyTorch, LangChain, FastAPI, Azure
+- Get endorsements from classmates and professors
+- Skills affect LinkedIn search ranking
+
+LinkedIn content strategy:
+- Post 2-3 times per week about what you're building
+- Share project updates with screenshots
+- Comment on posts by engineers at target companies
+- Write one technical article per month
+
+Networking that works:
+- Connect with NUST alumni working in AI globally
+- Message with a specific reason: "I saw your work on X"
+- Ask for 15-minute calls not generic coffee chats
+- Follow up after conversations with something useful
+
+Getting recruiter attention:
+- Set "Open to Work" to recruiters only
+- Update profile weekly (LinkedIn boosts active profiles)
+- Engage with posts from target companies
+- Use industry keywords recruiters search for

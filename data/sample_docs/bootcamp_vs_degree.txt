@@ -1,0 +1,47 @@
+Bootcamp vs Degree for AI Engineering 2026
+
+University Degree (4 years):
+Pros:
+- Strong fundamentals in math, algorithms, theory
+- Research opportunities and academic network
+- More respected by large companies (Google, Microsoft, Meta)
+- Access to university resources and mentors
+- Student subscription benefits (Azure for Students, GitHub Pro)
+
+Cons:
+- Time and cost (4 years, high tuition in many countries)
+- Curriculum can lag behind industry by 2-3 years
+- Less practical project focus
+- May cover topics irrelevant to AI engineering
+
+Best for: Research roles, PhD track, big tech companies
+
+Bootcamp (3-6 months):
+Pros:
+- Fast entry into industry
+- Very practical and project-focused
+- Cheaper than 4-year degree
+- Good career services at top bootcamps
+
+Cons:
+- No fundamentals depth (math, algorithms)
+- Harder to get into big tech companies
+- Quality varies enormously between bootcamps
+- No research opportunities
+
+Best for: Career switchers, web dev to AI transition
+
+The hybrid approach (best of both):
+- Complete CS/EE degree for fundamentals
+- Self-study AI/ML alongside degree
+- Build projects every semester
+- Intern at AI companies during degree
+- This is the path NUST students have available
+
+Top online learning resources (free/cheap):
+- fast.ai: Best practical ML course
+- DeepLearning.AI: Coursera specializations ($50/month)
+- Andrej Karpathy YouTube: Best for fundamentals
+- HuggingFace courses: Best for LLMs (free)
+- Stanford CS229: Free lecture videos online
+- MIT 6.034: AI fundamentals (free)

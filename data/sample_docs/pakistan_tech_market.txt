@@ -1,0 +1,38 @@
+Pakistan Tech Market for Engineers 2026
+
+Local market overview:
+Pakistan's tech industry is growing at 25% annually. The IT export 
+target is $5 billion by 2026, up from $2.6 billion in 2023.
+
+Top tech companies in Pakistan:
+- Systems Limited: Largest IT company, 10,000+ employees
+- NetSol Technologies: Listed on NASDAQ, fintech focus
+- Teradata Pakistan: Data and AI analytics
+- i2c Inc: Fintech and payment systems
+- 10Pearls: US-based, large Pakistan office
+- Arbisoft: Product company, remote-first culture
+- Tintash: Game development and mobile apps
+
+AI/ML salaries in Pakistan (2026):
+- Junior AI Engineer (0-2 years): PKR 150,000 - 250,000/month
+- Mid-level AI Engineer (2-5 years): PKR 250,000 - 500,000/month
+- Senior AI Engineer (5+ years): PKR 500,000 - 1,000,000/month
+- Remote international: $2,000 - $8,000/month (paid in USD)
+
+Top cities for tech jobs:
+- Karachi: Financial hub, most multinational offices
+- Lahore: Fastest growing tech scene, many startups
+- Islamabad: Government tech projects, NUST talent pool
+- Rawalpindi: Growing, close to Islamabad
+
+NUST advantage:
+NUST Islamabad graduates are highly regarded in Pakistan's tech industry.
+SEECS specifically produces top AI/ML talent. NUST alumni networks 
+in Silicon Valley, UAE, and UK are strong assets.
+
+How to maximize Pakistan-based career:
+1. Target remote work for international salaries
+2. Build a Upwork/Toptal profile while studying
+3. Contribute to open source to gain international visibility
+4. Get international certifications for credibility
+5. Network through NUST alumni globally

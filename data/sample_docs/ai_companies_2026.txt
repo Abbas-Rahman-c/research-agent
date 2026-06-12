@@ -1,0 +1,35 @@
+Top AI Companies Hiring Engineers in 2026
+
+Tier 1 — Big Tech (Highest pay, most competitive):
+- Google DeepMind: AI research, $150k-$300k+ base
+- Microsoft AI: Azure AI, Copilot teams, $140k-$280k
+- Meta AI: Open source LLMs, PyTorch team, $145k-$290k
+- Apple AI: On-device ML, privacy-focused, $140k-$270k
+- Amazon AWS AI: SageMaker, Bedrock, $135k-$260k
+
+Tier 2 — AI-First Companies (Fast growing):
+- Anthropic: AI safety, Claude development, $160k-$320k
+- OpenAI: GPT models, $180k-$350k
+- Cohere: Enterprise LLMs, $130k-$250k
+- Mistral AI: Open source models, European base
+- Groq: Hardware+software AI inference, $140k-$260k
+
+Tier 3 — Enterprise AI (Stable, good benefits):
+- Salesforce Einstein: CRM AI, $120k-$220k
+- IBM Watson: Enterprise AI, $110k-$200k
+- SAP AI: Business intelligence, $115k-$210k
+- Oracle AI: Database + AI, $110k-$200k
+
+Tier 4 — Startups (High risk, high reward):
+- 4000+ AI startups hiring globally in 2026
+- Typical equity: 0.1% - 2% for early engineers
+- Salaries: $80k-$150k + equity
+- Best for: rapid skill growth, ownership, career acceleration
+
+What these companies look for:
+- Strong Python fundamentals
+- Experience with LLMs and fine-tuning
+- RAG pipeline development
+- MLOps and deployment experience
+- Research paper implementation ability
+- Open source contributions

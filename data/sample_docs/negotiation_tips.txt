@@ -1,0 +1,40 @@
+Salary Negotiation for Engineers 2026
+
+The golden rule: Never accept the first offer.
+Engineers who negotiate earn $5,000-$20,000 more per year on average.
+
+When to negotiate:
+- After receiving a written offer (not verbal)
+- Before signing anything
+- When switching jobs (easiest leverage point)
+- At annual review (with competing offer if possible)
+
+How to counter an offer:
+1. Express enthusiasm first: "I'm really excited about this role"
+2. Ask for time: "Can I have 48 hours to review?"
+3. Research the market: Use Glassdoor, Levels.fyi, LinkedIn Salary
+4. Counter 15-20% above their offer
+5. Justify with market data, not personal needs
+
+Scripts that work:
+"Based on my research and experience with [specific skill], I was 
+expecting something closer to [X]. Is there flexibility there?"
+
+"I have another offer for [X]. I'd prefer to join your team — 
+can you match or come closer to that?"
+
+"I'm flexible on base if we can improve the equity/bonus structure."
+
+What to negotiate beyond salary:
+- Signing bonus (often easier to get than salary increase)
+- Remote work flexibility
+- Extra PTO days
+- Professional development budget ($2,000-$5,000/year)
+- Equipment allowance
+- Earlier performance review (6 months instead of 12)
+
+For Pakistani engineers negotiating remote roles:
+- Research USD market rates, not local rates
+- Emphasize timezone overlap and communication skills
+- Offer a trial project to reduce employer risk perception
+- Start higher than you'd accept — they will counter

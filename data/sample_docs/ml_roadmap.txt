@@ -1,0 +1,42 @@
+ML Engineering Roadmap 2026
+
+Phase 1 — Foundations (0-3 months):
+- Python: NumPy, Pandas, Matplotlib
+- Math: Linear algebra, calculus, probability, statistics
+- ML basics: Scikit-learn, supervised/unsupervised learning
+- Version control: Git and GitHub
+- Resource: fast.ai Practical Deep Learning (free)
+
+Phase 2 — Deep Learning (3-6 months):
+- PyTorch or TensorFlow (PyTorch preferred in 2026)
+- Neural networks, CNNs, RNNs, attention
+- Training, evaluation, debugging models
+- GPU computing basics
+- Resource: Andrej Karpathy's Neural Networks from Scratch
+
+Phase 3 — LLMs and GenAI (6-9 months):
+- Transformer architecture (read Attention is All You Need)
+- HuggingFace Transformers library
+- Fine-tuning: LoRA, QLoRA, PEFT
+- Prompt engineering and chain-of-thought
+- RAG pipelines: FAISS, Pinecone, LangChain
+- Resource: HuggingFace NLP Course (free)
+
+Phase 4 — Production ML (9-12 months):
+- FastAPI for model serving
+- Docker and containerization
+- MLflow for experiment tracking
+- Cloud deployment: AWS SageMaker or Azure ML
+- CI/CD for ML pipelines
+- Resource: Made With ML (free)
+
+Phase 5 — Specialization (12+ months):
+Choose one: Computer Vision, NLP/LLMs, Reinforcement Learning,
+Time Series, or Multimodal AI
+
+Key projects to build at each phase:
+- Phase 1: House price prediction, customer churn
+- Phase 2: Image classifier, sentiment analysis
+- Phase 3: Custom chatbot, RAG Q&A system
+- Phase 4: Deployed ML API, automated retraining pipeline
+- Phase 5: Research paper implementation

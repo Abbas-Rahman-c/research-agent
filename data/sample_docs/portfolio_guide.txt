@@ -1,0 +1,47 @@
+Engineering Portfolio Guide 2026
+
+What makes a portfolio stand out:
+- Deployed projects (not just GitHub repos)
+- Real problems solved, not tutorial projects
+- Clear README with demo links
+- Quantified results where possible
+
+Top 5 projects every AI engineer should have:
+
+1. RAG Q&A System
+Build a document Q&A app using LangChain + FAISS or Azure AI Search.
+Why: Shows you understand production LLM patterns.
+Deploy: Streamlit Cloud or Hugging Face Spaces (free)
+
+2. Fine-tuned LLM
+Fine-tune a small model (Mistral 7B or Llama 3.2) on a custom dataset.
+Why: Shows deep ML knowledge beyond API calls.
+Deploy: HuggingFace model hub (free)
+
+3. ML Pipeline with MLOps
+End-to-end: data → training → evaluation → deployment → monitoring.
+Why: Shows production awareness, not just notebook coding.
+Deploy: AWS SageMaker or Azure ML
+
+4. Computer Vision App
+Real-time object detection or image classification with a UI.
+Why: Visual demos are impressive in interviews.
+Deploy: Gradio or Streamlit with webcam access
+
+5. AI-Powered Web App
+Full stack: React/Next.js frontend + FastAPI backend + AI feature.
+Why: Shows you can build complete products, not just models.
+Deploy: Vercel (frontend) + Railway or Render (backend)
+
+GitHub profile optimization:
+- Pin your 6 best repositories
+- Write detailed READMEs with GIFs/screenshots
+- Commit consistently (green squares matter to recruiters)
+- Star relevant repos to show your interests
+- Contribute to 1-2 open source projects
+
+Portfolio website:
+- Use GitHub Pages (free) or Vercel
+- Include: bio, projects, skills, contact
+- Add a blog section for technical writing
+- Link everything to your GitHub
